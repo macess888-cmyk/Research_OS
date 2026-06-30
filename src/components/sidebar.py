@@ -8,6 +8,7 @@ PAGES = [
     "Software",
     "Teaching",
     "Collaborations",
+    "Research Atlas",
     "Timeline",
 ]
 
