@@ -1,5 +1,13 @@
 import streamlit as st
-from src.utils.loader import load_md
+
+from src.utils.registry import list_projects
 
 def render_software():
-    st.markdown(load_md("software/hacr.md"))
+
+    st.header("Software Gallery")
+
+    for project in list_projects():
+
+        with st.expander(project.stem.replace("_", " ").title()):
+
+            st.markdown(project.read_text(encoding="utf-8"))

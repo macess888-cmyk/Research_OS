@@ -24,7 +24,7 @@ st.set_page_config(
 page = render_sidebar()
 render_header()
 
-if page == "Home":
+if page == "Dashboard":
     render_home()
 elif page == "Biography":
     render_biography()
