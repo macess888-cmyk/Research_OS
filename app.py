@@ -2,6 +2,7 @@ import streamlit as st
 from pathlib import Path
 
 ROOT = Path(__file__).parent
+CONTENT = ROOT / "content"
 
 st.set_page_config(
     page_title="Jake Macdonald Research Portfolio",
@@ -10,7 +11,7 @@ st.set_page_config(
 )
 
 def load_md(path):
-    file_path = ROOT / path
+    file_path = CONTENT / path
     if file_path.exists():
         return file_path.read_text(encoding="utf-8")
     return f"Missing file: {path}"
@@ -38,11 +39,11 @@ if page == "Home":
     st.header("Academic Portfolio & Research Dossier")
     st.write("Kelowna, British Columbia, Canada")
     st.markdown("""
-    **Email:** 00jake@orocore.one  
-    **LinkedIn:** https://linkedin.com/in/jake-macdonald-45394a393  
-    **ORCID:** https://orcid.org/0009-0000-6513-7049  
-    **GitHub:** https://github.com/macess888-cmyk/HACR_Hybrid_Observatory
-    """)
+**Email:** 00jake@orocore.one  
+**LinkedIn:** https://linkedin.com/in/jake-macdonald-45394a393  
+**ORCID:** https://orcid.org/0009-0000-6513-7049  
+**GitHub:** https://github.com/macess888-cmyk/HACR_Hybrid_Observatory
+""")
 
     col1, col2, col3 = st.columns(3)
     col1.metric("Research Program", "Active")
@@ -61,14 +62,10 @@ elif page == "Biography":
     st.markdown(load_md("biography/executive_summary.md"))
 
 elif page == "Research Program":
-    st.header("Observability and Governability of Complex Systems")
-    st.write(
-        "This research program investigates how complex technical systems remain "
-        "observable, governable, recoverable, and resilient under uncertainty."
-    )
+    st.markdown(load_md("research/research_program.md"))
 
 elif page == "Publications":
-    st.markdown(load_md("publications/orcid.md"))
+    st.markdown(load_md("publications/publications.md"))
 
 elif page == "Software":
     st.markdown(load_md("software/hacr.md"))
@@ -77,26 +74,7 @@ elif page == "Teaching":
     st.markdown(load_md("teaching/teaching_statement.md"))
 
 elif page == "Collaborations":
-    st.header("Collaborations")
-    st.write(
-        "Collaborative work is presented with clear attribution, distinguishing "
-        "individual research, shared research, and external project ownership."
-    )
+    st.markdown(load_md("collaborations/collaborations.md"))
 
 elif page == "Timeline":
-    st.header("Research Timeline")
-    st.markdown("""
-    Invariant Corridors  
-    ↓  
-    Governance Architectures  
-    ↓  
-    HACR Hybrid Observatory  
-    ↓  
-    Universal Bridge  
-    ↓  
-    Signal Enhancer  
-    ↓  
-    Governability Break Surface Analysis  
-    ↓  
-    Recovery Navigation
-    """)
+    st.markdown(load_md("timeline/timeline.md"))
