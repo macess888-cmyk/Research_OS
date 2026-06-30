@@ -11,6 +11,7 @@ PAGES = [
     "Research Atlas",
     "Timeline",
     "Admin Editor",
+    "Build Center",
 ]
 
 def render_sidebar():
