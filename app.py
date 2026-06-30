@@ -2,8 +2,9 @@ import streamlit as st
 
 from src.components.header import render_header
 from src.components.sidebar import render_sidebar
-from src.pages.atlas import render_atlas
 
+from src.pages.atlas import render_atlas
+from src.pages.admin import render_admin
 from src.pages.home import render_home
 from src.pages.biography import render_biography
 from src.pages.research import render_research
@@ -40,3 +41,5 @@ elif page == "Research Atlas":
     render_atlas()
 elif page == "Timeline":
     render_timeline()
+elif page == "Admin Editor":
+    render_admin()
