@@ -1,7 +1,8 @@
 import streamlit as st
+from src.utils.stats import get_dashboard_stats
 
 def render_home():
-    st.header("Academic Portfolio & Research Dossier")
+    st.header("Research Dashboard")
     st.write("Kelowna, British Columbia, Canada")
 
     st.markdown("""
@@ -11,10 +12,14 @@ def render_home():
 **GitHub:** https://github.com/macess888-cmyk/HACR_Hybrid_Observatory
 """)
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Research Program", "Active")
-    col2.metric("Publications", "2 DOI Works")
-    col3.metric("Software", "Active")
+    st.subheader("Live Project Stats")
+    stats = get_dashboard_stats()
+
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Markdown Files", stats["Markdown Files"])
+    col2.metric("Python Files", stats["Python Files"])
+    col3.metric("Images", stats["Images"])
+    col4.metric("Git Commits", stats["Git Commits"])
 
     st.subheader("Research Identity")
     st.write(
