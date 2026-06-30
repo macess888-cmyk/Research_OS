@@ -1,8 +1,16 @@
 import streamlit as st
-from pathlib import Path
 
-ROOT = Path(__file__).parent
-CONTENT = ROOT / "content"
+from src.components.header import render_header
+from src.components.sidebar import render_sidebar
+
+from src.pages.home import render_home
+from src.pages.biography import render_biography
+from src.pages.research import render_research
+from src.pages.publications import render_publications
+from src.pages.software import render_software
+from src.pages.teaching import render_teaching
+from src.pages.collaborations import render_collaborations
+from src.pages.timeline import render_timeline
 
 st.set_page_config(
     page_title="Jake Macdonald Research Portfolio",
@@ -10,71 +18,22 @@ st.set_page_config(
     layout="wide"
 )
 
-def load_md(path):
-    file_path = CONTENT / path
-    if file_path.exists():
-        return file_path.read_text(encoding="utf-8")
-    return f"Missing file: {path}"
-
-st.sidebar.title("Research Portfolio")
-
-page = st.sidebar.radio(
-    "Navigate",
-    [
-        "Home",
-        "Biography",
-        "Research Program",
-        "Publications",
-        "Software",
-        "Teaching",
-        "Collaborations",
-        "Timeline",
-    ]
-)
-
-st.title("Jake Macdonald")
-st.caption("Hybrid Systems Architect • Founder, HACR Hybrid Observatory")
+page = render_sidebar()
+render_header()
 
 if page == "Home":
-    st.header("Academic Portfolio & Research Dossier")
-    st.write("Kelowna, British Columbia, Canada")
-    st.markdown("""
-**Email:** 00jake@orocore.one  
-**LinkedIn:** https://linkedin.com/in/jake-macdonald-45394a393  
-**ORCID:** https://orcid.org/0009-0000-6513-7049  
-**GitHub:** https://github.com/macess888-cmyk/HACR_Hybrid_Observatory
-""")
-
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Research Program", "Active")
-    col2.metric("Publications", "2 DOI Works")
-    col3.metric("Software", "Active")
-
-    st.subheader("Research Identity")
-    st.write(
-        "Independent researcher developing open-source frameworks and software "
-        "for AI governance, observability, resilience engineering, and boundary-based "
-        "architectures for complex adaptive systems."
-    )
-
+    render_home()
 elif page == "Biography":
-    st.markdown(load_md("biography/faculty_bio.md"))
-    st.markdown(load_md("biography/executive_summary.md"))
-
+    render_biography()
 elif page == "Research Program":
-    st.markdown(load_md("research/research_program.md"))
-
+    render_research()
 elif page == "Publications":
-    st.markdown(load_md("publications/publications.md"))
-
+    render_publications()
 elif page == "Software":
-    st.markdown(load_md("software/hacr.md"))
-
+    render_software()
 elif page == "Teaching":
-    st.markdown(load_md("teaching/teaching_statement.md"))
-
+    render_teaching()
 elif page == "Collaborations":
-    st.markdown(load_md("collaborations/collaborations.md"))
-
+    render_collaborations()
 elif page == "Timeline":
-    st.markdown(load_md("timeline/timeline.md"))
+    render_timeline()
