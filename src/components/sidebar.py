@@ -10,6 +10,7 @@ PAGES = [
     "Collaborations",
     "Research Atlas",
     "Timeline",
+    "Search",
     "Admin Editor",
     "Build Center",
 ]
