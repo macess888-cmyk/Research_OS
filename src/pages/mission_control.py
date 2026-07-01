@@ -43,9 +43,25 @@ def render_mission_control():
     st.subheader("Graph Intelligence")
 
     c1, c2, c3, c4 = st.columns(4)
+
     c1.metric("Nodes", report["graph"]["nodes"])
     c2.metric("Edges", report["graph"]["edges"])
     c3.metric("Density", report["graph"]["density"])
     c4.metric("Isolated", report["graph"]["isolated"])
 
     st.write(f"**Most Connected:** {report['graph']['most_connected']}")
+
+    st.divider()
+
+    st.subheader("Registered Services")
+
+    for service in report["services"]:
+        status = service.get("status", "UNKNOWN")
+        name = service.get("name", "Unnamed Service")
+
+        if status == "READY":
+            st.success(f"{name} — {status}")
+        elif status == "WARNING":
+            st.warning(f"{name} — {status}")
+        else:
+            st.info(f"{name} — {status}")
