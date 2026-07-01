@@ -1,0 +1,5 @@
+APP_NAME = "Research OS"
+APP_VERSION = "v1.7.0"
+APP_AUTHOR = "Jake Macdonald"
+APP_TAGLINE = "Hybrid Systems Architect • Founder, HACR Hybrid Observatory"
+APP_LOCATION = "Kelowna, BC, Canada"
