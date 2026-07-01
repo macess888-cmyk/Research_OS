@@ -15,6 +15,7 @@ PAGES = [
     "Platform Analytics",
     "Research Kernel",
     "Platform Registry",
+    "Task Scheduler",
     "Design Doctrine",
     "System Log",
 
