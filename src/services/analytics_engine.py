@@ -1,9 +1,10 @@
+from src.services.inspectable import Inspectable
 from src.services.object_engine import ObjectEngine
 from src.services.relationship_engine import RelationshipEngine
 from src.graph.graph_engine import GraphEngineV2
 
 
-class AnalyticsEngine:
+class AnalyticsEngine(Inspectable):
     def __init__(self):
         self.objects = ObjectEngine()
         self.relationships = RelationshipEngine()
@@ -57,3 +58,13 @@ class AnalyticsEngine:
             len(item["issues"])
             for item in self.quality_report()
         )
+        
+    def inspect(self):
+        summary = self.summary()
+
+        return {
+            "service": "Analytics Engine",
+            "status": "READY",
+            "healthy": True,
+            "details": summary,
+        }
