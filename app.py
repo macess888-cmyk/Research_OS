@@ -13,19 +13,22 @@ from src.pages.software import render_software
 from src.pages.teaching import render_teaching
 from src.pages.collaborations import render_collaborations
 
+# Project Pages
+from src.pages.projects import render_projects
+from src.pages.repositories import render_repositories
+from src.pages.workspace import render_workspace
+
 # Knowledge Pages
 from src.pages.atlas import render_atlas
 from src.pages.graph import render_graph
 from src.pages.registry import render_registry
 from src.pages.timeline import render_timeline
 from src.pages.search import render_search
-from src.pages.intelligence import render_intelligence
 
 # Platform Pages
 from src.pages.health import render_health
 from src.pages.validation import render_validation
-from src.pages.repositories import render_repositories
-from src.pages.workspace import render_workspace
+from src.pages.intelligence import render_intelligence
 
 # Administration Pages
 from src.pages.about import render_about
@@ -37,6 +40,7 @@ ROUTES = {
     "Dashboard": render_home,
     "System Health": render_health,
     "Validation": render_validation,
+    "Research Intelligence": render_intelligence,
 
     "Biography": render_biography,
     "Research Program": render_research,
@@ -44,6 +48,7 @@ ROUTES = {
     "Teaching": render_teaching,
     "Collaborations": render_collaborations,
 
+    "Project Hub": render_projects,
     "Software": render_software,
     "Repositories": render_repositories,
     "Research Workspace": render_workspace,
@@ -51,7 +56,6 @@ ROUTES = {
     "Research Atlas": render_atlas,
     "Knowledge Graph": render_graph,
     "Research Registry": render_registry,
-    "Research Intelligence": render_intelligence,
     "Timeline": render_timeline,
     "Search": render_search,
 
@@ -70,7 +74,6 @@ def main():
     )
 
     page = render_sidebar()
-
     render_header()
 
     route = ROUTES.get(page)

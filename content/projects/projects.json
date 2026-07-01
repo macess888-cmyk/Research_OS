@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "id": "research_os",
+      "name": "Research OS",
+      "status": "Active",
+      "category": "Platform",
+      "github": "https://github.com/macess888-cmyk/Research_OS",
+      "description": "Research management platform."
+    },
+    {
+      "id": "hacr",
+      "name": "HACR Hybrid Observatory",
+      "status": "Active",
+      "category": "Research",
+      "github": "https://github.com/macess888-cmyk/HACR_Hybrid_Observatory",
+      "description": "Observability and governance research."
+    }
+  ]
+}

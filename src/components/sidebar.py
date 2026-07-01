@@ -15,6 +15,7 @@ PAGES = [
 
     "Software",
     "Repositories",
+    "Project Hub",
     "Research Workspace",
 
     "Research Atlas",
