@@ -23,6 +23,7 @@ PAGES = [
     "Timeline",
     "Search",
     "Validation",
+    "Research Intelligence",
 
     "Admin Editor",
     "Build Center",

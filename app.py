@@ -19,6 +19,7 @@ from src.pages.graph import render_graph
 from src.pages.registry import render_registry
 from src.pages.timeline import render_timeline
 from src.pages.search import render_search
+from src.pages.intelligence import render_intelligence
 
 # Platform Pages
 from src.pages.health import render_health
@@ -50,6 +51,7 @@ ROUTES = {
     "Research Atlas": render_atlas,
     "Knowledge Graph": render_graph,
     "Research Registry": render_registry,
+    "Research Intelligence": render_intelligence,
     "Timeline": render_timeline,
     "Search": render_search,
 
