@@ -35,6 +35,7 @@ from src.pages.navigator import render_navigator
 from src.pages.health import render_health
 from src.pages.validation import render_validation
 from src.pages.intelligence import render_intelligence
+from src.pages.analytics import render_analytics
 
 # Administration Pages
 from src.pages.about import render_about
@@ -51,6 +52,7 @@ ROUTES = {
     "System Health": render_health,
     "Validation": render_validation,
     "Research Intelligence": render_intelligence,
+    "Platform Analytics": render_analytics,
 
     # Research
     "Biography": render_biography,
