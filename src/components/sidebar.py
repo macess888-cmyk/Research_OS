@@ -5,6 +5,7 @@ from src.config import APP_NAME, APP_VERSION, APP_AUTHOR, APP_TAGLINE, APP_LOCAT
 PAGES = [
     "Dashboard",
     "Mission Control",
+    "Activity Log",
 
     # Platform
     "System Health",

@@ -37,6 +37,7 @@ from src.pages.validation import render_validation
 from src.pages.intelligence import render_intelligence
 from src.pages.analytics import render_analytics
 from src.pages.kernel import render_kernel
+from src.pages.activity import render_activity
 
 # Administration Pages
 from src.pages.about import render_about
@@ -48,6 +49,7 @@ ROUTES = {
     # Dashboard
     "Dashboard": render_home,
     "Mission Control": render_mission_control,
+    "Activity Log": render_activity,
 
     # Platform
     "System Health": render_health,
