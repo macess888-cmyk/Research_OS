@@ -5,21 +5,28 @@ from src.config import APP_NAME, APP_VERSION, APP_AUTHOR, APP_TAGLINE, APP_LOCAT
 PAGES = [
     "Dashboard",
     "Mission Control",
+
+    # Platform
     "System Health",
     "Validation",
     "Research Intelligence",
+    "Platform Analytics",
+    "Research Kernel",
 
+    # Research
     "Biography",
     "Research Program",
     "Publications",
     "Teaching",
     "Collaborations",
 
+    # Projects
     "Project Hub",
     "Software",
     "Repositories",
     "Research Workspace",
 
+    # Knowledge
     "Research Atlas",
     "Knowledge Graph",
     "Graph Metrics",
@@ -31,6 +38,7 @@ PAGES = [
     "Timeline",
     "Search",
 
+    # Administration
     "About",
     "Admin Editor",
     "Build Center",
