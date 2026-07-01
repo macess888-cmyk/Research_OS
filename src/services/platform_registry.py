@@ -5,6 +5,7 @@ from src.services.analytics_engine import AnalyticsEngine
 from src.services.object_engine import ObjectEngine
 from src.services.relationship_engine import RelationshipEngine
 from src.services.topology_engine import TopologyEngine
+from src.geometry.structural_geometry import StructuralGeometry
 
 
 class PlatformRegistry:
@@ -23,9 +24,9 @@ class PlatformRegistry:
         self.objects = ObjectEngine()
         self.relationships = RelationshipEngine()
         self.topology = TopologyEngine()
+        self.geometry = StructuralGeometry()
 
     def services(self):
-
         topo = self.topology.summary()
 
         return [
@@ -59,6 +60,11 @@ class PlatformRegistry:
                     "Edges": topo["edges"],
                     "Density": topo["density"],
                 },
+            },
+            {
+                "name": "Geometry Framework",
+                "status": "READY",
+                "details": self.geometry.inspect(),
             },
             {
                 "name": "Analytics Engine",
