@@ -1,0 +1,25 @@
+{
+  "repositories": [
+    {
+      "name": "Research OS",
+      "path": "C:/Users/maces/Jake_Academic_Portfolio",
+      "github": "https://github.com/macess888-cmyk/Research_OS",
+      "category": "Platform",
+      "status": "Active"
+    },
+    {
+      "name": "HACR Hybrid Observatory",
+      "path": "C:/Users/maces/Desktop/HACR_Hybrid_Observatory",
+      "github": "https://github.com/macess888-cmyk/HACR_Hybrid_Observatory",
+      "category": "Research",
+      "status": "Active"
+    },
+    {
+      "name": "Riemann Workbench",
+      "path": "C:/Users/maces/Desktop/riemann-workbench",
+      "github": "",
+      "category": "Mathematics",
+      "status": "Active"
+    }
+  ]
+}

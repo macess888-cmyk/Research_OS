@@ -2,23 +2,31 @@ import streamlit as st
 
 PAGES = [
     "Dashboard",
+    "System Health",
+
     "Biography",
     "Research Program",
     "Publications",
-    "Software",
     "Teaching",
     "Collaborations",
+
+    "Software",
+    "Repositories",
+    "Research Workspace",
+
     "Research Atlas",
+    "Knowledge Graph",
+    "Research Registry",
     "Timeline",
     "Search",
+
     "Admin Editor",
     "Build Center",
-    "Knowledge Graph",
 ]
 
 def render_sidebar():
     st.sidebar.title("Research OS")
-    st.sidebar.caption("v1.0.0")
+    st.sidebar.caption("Research OS v1.7.0")
 
     st.sidebar.markdown("---")
     page = st.sidebar.radio("Navigate", PAGES)
