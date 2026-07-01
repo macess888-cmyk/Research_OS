@@ -14,6 +14,7 @@ PAGES = [
     "Research Intelligence",
     "Platform Analytics",
     "Research Kernel",
+    "System Log",
 
     # Research
     "Biography",
@@ -32,6 +33,7 @@ PAGES = [
     "Research Atlas",
     "Knowledge Graph",
     "Graph Metrics",
+    "Topology Inspector",
     "Research Registry",
     "Research Objects",
     "Object Registry",
