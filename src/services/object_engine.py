@@ -2,11 +2,13 @@ import json
 from pathlib import Path
 from typing import Any
 
+from src.services.inspectable import Inspectable
+
 ROOT = Path(__file__).resolve().parents[2]
 OBJECTS_DIR = ROOT / "content" / "objects"
 
 
-class ObjectEngine:
+class ObjectEngine(Inspectable):
     def __init__(self):
         OBJECTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -96,6 +98,20 @@ class ObjectEngine:
                 related_ids.add(value)
 
         return [
-            self.get(rel_id) or {"id": rel_id, "type": "external", "title": rel_id}
+            self.get(rel_id) or {
+                "id": rel_id,
+                "type": "external",
+                "title": str(rel_id).replace("_", " ").title(),
+            }
             for rel_id in sorted(related_ids)
         ]
+
+    def inspect(self):
+        return {
+            "service": "Object Engine",
+            "status": "READY",
+            "healthy": True,
+            "objects": self.count(),
+            "types": self.by_type(),
+            "object_directory": str(OBJECTS_DIR),
+        }
