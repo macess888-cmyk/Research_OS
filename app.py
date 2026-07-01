@@ -31,6 +31,7 @@ from src.pages.objects import render_objects
 from src.pages.object_registry import render_object_registry
 from src.pages.relationships import render_relationships
 from src.pages.navigator import render_navigator
+from src.pages.geometry import render_geometry
 
 # Platform Pages
 from src.pages.health import render_health
@@ -85,6 +86,7 @@ ROUTES = {
     "Knowledge Graph": render_graph,
     "Graph Metrics": render_graph_metrics,
     "Topology Inspector": render_topology,
+    "Geometry Framework": render_geometry,
     "Research Registry": render_registry,
     "Research Objects": render_objects,
     "Object Registry": render_object_registry,

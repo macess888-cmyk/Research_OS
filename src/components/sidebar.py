@@ -37,6 +37,7 @@ PAGES = [
     "Knowledge Graph",
     "Graph Metrics",
     "Topology Inspector",
+    "Geometry Framework",
     "Research Registry",
     "Research Objects",
     "Object Registry",
