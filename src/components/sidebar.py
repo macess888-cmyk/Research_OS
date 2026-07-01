@@ -14,6 +14,7 @@ PAGES = [
     "Research Intelligence",
     "Platform Analytics",
     "Research Kernel",
+    "Design Doctrine",
     "System Log",
 
     # Research

@@ -40,6 +40,7 @@ from src.pages.analytics import render_analytics
 from src.pages.kernel import render_kernel
 from src.pages.activity import render_activity
 from src.pages.system_log import render_system_log
+from src.pages.doctrine import render_doctrine
 
 # Administration Pages
 from src.pages.about import render_about
@@ -60,6 +61,7 @@ ROUTES = {
     "Platform Analytics": render_analytics,
     "Research Kernel": render_kernel,
     "System Log": render_system_log,
+    "Design Doctrine": render_doctrine,
 
     # Research
     "Biography": render_biography,
