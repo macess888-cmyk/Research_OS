@@ -26,6 +26,7 @@ PAGES = [
     "Research Objects",
     "Object Registry",
     "Relationship Explorer",
+    "Research Navigator",
     "Timeline",
     "Search",
 

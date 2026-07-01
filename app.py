@@ -28,6 +28,7 @@ from src.pages.search import render_search
 from src.pages.objects import render_objects
 from src.pages.object_registry import render_object_registry
 from src.pages.relationships import render_relationships
+from src.pages.navigator import render_navigator
 
 # Platform Pages
 from src.pages.health import render_health
@@ -70,6 +71,7 @@ ROUTES = {
     "Research Objects": render_objects,
     "Object Registry": render_object_registry,
     "Relationship Explorer": render_relationships,
+    "Research Navigator": render_navigator,
     "Timeline": render_timeline,
     "Search": render_search,
 

@@ -4,7 +4,6 @@ from src.services.object_engine import ObjectEngine
 
 
 class RelationshipEngine:
-
     def __init__(self):
         self.objects = ObjectEngine()
 
@@ -12,7 +11,6 @@ class RelationshipEngine:
         graph = defaultdict(list)
 
         for obj in self.objects.load_all():
-
             source = obj.get("id")
 
             for field in [
@@ -26,7 +24,6 @@ class RelationshipEngine:
                 "datasets",
                 "tags",
             ]:
-
                 values = obj.get(field, [])
 
                 if isinstance(values, str):
@@ -38,7 +35,22 @@ class RelationshipEngine:
         return dict(graph)
 
     def related(self, object_id):
-        return self.relationship_map().get(object_id, [])
+        related_objects = []
+        ids = self.relationship_map().get(object_id, [])
+
+        for rid in ids:
+            obj = self.objects.get(rid)
+
+            if obj:
+                related_objects.append(obj)
+            else:
+                related_objects.append({
+                    "id": rid,
+                    "title": str(rid).replace("_", " ").title(),
+                    "type": "unknown",
+                })
+
+        return related_objects
 
     def relationship_count(self):
         return sum(
@@ -47,9 +59,7 @@ class RelationshipEngine:
         )
 
     def orphan_objects(self):
-
         graph = self.relationship_map()
-
         incoming = set()
 
         for values in graph.values():
@@ -58,9 +68,7 @@ class RelationshipEngine:
         orphaned = []
 
         for obj in self.objects.load_all():
-
             oid = obj["id"]
-
             outgoing = len(graph.get(oid, []))
 
             if oid not in incoming and outgoing == 0:
@@ -69,7 +77,6 @@ class RelationshipEngine:
         return orphaned
 
     def completeness(self, object_id):
-
         obj = self.objects.get(object_id)
 
         if not obj:
