@@ -7,6 +7,7 @@ PAGES = [
     "System Health",
 
     "Biography",
+    "About",
     "Research Program",
     "Publications",
     "Teaching",
@@ -21,6 +22,7 @@ PAGES = [
     "Research Registry",
     "Timeline",
     "Search",
+    "Validation",
 
     "Admin Editor",
     "Build Center",

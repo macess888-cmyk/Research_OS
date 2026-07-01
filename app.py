@@ -21,31 +21,40 @@ from src.pages.timeline import render_timeline
 from src.pages.search import render_search
 
 # Platform Pages
+from src.pages.health import render_health
+from src.pages.validation import render_validation
 from src.pages.repositories import render_repositories
 from src.pages.workspace import render_workspace
-from src.pages.health import render_health
 
 # Administration Pages
+from src.pages.about import render_about
 from src.pages.admin import render_admin
 from src.pages.build_center import render_build_center
 
 
 ROUTES = {
     "Dashboard": render_home,
+    "System Health": render_health,
+    "Validation": render_validation,
+
     "Biography": render_biography,
     "Research Program": render_research,
     "Publications": render_publications,
-    "Software": render_software,
     "Teaching": render_teaching,
     "Collaborations": render_collaborations,
+
+    "Software": render_software,
+    "Repositories": render_repositories,
+    "Research Workspace": render_workspace,
+
     "Research Atlas": render_atlas,
     "Knowledge Graph": render_graph,
     "Research Registry": render_registry,
     "Timeline": render_timeline,
     "Search": render_search,
-    "Repositories": render_repositories,
-    "Research Workspace": render_workspace,
-    "System Health": render_health,
+
+    "About": render_about,
+
     "Admin Editor": render_admin,
     "Build Center": render_build_center,
 }
@@ -55,10 +64,11 @@ def main():
     st.set_page_config(
         page_title="Research OS | Jake Macdonald",
         page_icon="🎓",
-        layout="wide"
+        layout="wide",
     )
 
     page = render_sidebar()
+
     render_header()
 
     route = ROUTES.get(page)
@@ -66,7 +76,7 @@ def main():
     if route:
         route()
     else:
-        st.error(f"No route found for page: {page}")
+        st.error(f"Unknown page: {page}")
 
 
 if __name__ == "__main__":
