@@ -5,17 +5,18 @@ from src.config import APP_NAME, APP_VERSION, APP_AUTHOR, APP_TAGLINE, APP_LOCAT
 PAGES = [
     "Dashboard",
     "System Health",
+    "Validation",
+    "Research Intelligence",
 
     "Biography",
-    "About",
     "Research Program",
     "Publications",
     "Teaching",
     "Collaborations",
 
+    "Project Hub",
     "Software",
     "Repositories",
-    "Project Hub",
     "Research Workspace",
 
     "Research Atlas",
@@ -23,9 +24,8 @@ PAGES = [
     "Research Registry",
     "Timeline",
     "Search",
-    "Validation",
-    "Research Intelligence",
 
+    "About",
     "Admin Editor",
     "Build Center",
 ]
