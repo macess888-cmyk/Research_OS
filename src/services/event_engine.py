@@ -2,12 +2,14 @@ import json
 from pathlib import Path
 from datetime import datetime
 
+from src.services.inspectable import Inspectable
+
 ROOT = Path(__file__).resolve().parents[2]
 EVENT_DIR = ROOT / "content" / "events"
 EVENT_FILE = EVENT_DIR / "events.json"
 
 
-class EventEngine:
+class EventEngine(Inspectable):
     def __init__(self):
         EVENT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -29,7 +31,7 @@ class EventEngine:
 
         EVENT_FILE.write_text(
             json.dumps(events, indent=2),
-            encoding="utf-8"
+            encoding="utf-8",
         )
 
         return event
@@ -45,3 +47,12 @@ class EventEngine:
 
     def count(self):
         return len(self.all_events())
+
+    def inspect(self):
+        return {
+            "service": "Event Engine",
+            "status": "READY",
+            "healthy": True,
+            "events": self.count(),
+            "event_file": str(EVENT_FILE),
+        }
