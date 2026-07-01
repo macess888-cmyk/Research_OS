@@ -1,0 +1,23 @@
+{
+    "application": {
+        "name": "Research OS",
+        "version": "1.4.0",
+        "author": "Jake Macdonald",
+        "organization": "HACR Hybrid Observatory"
+    },
+
+    "paths": {
+        "content": "content",
+        "output": "output",
+        "events": "content/events",
+        "objects": "content/objects"
+    },
+
+    "features": {
+        "activity_log": true,
+        "analytics": true,
+        "graph": true,
+        "navigator": true,
+        "mission_control": true
+    }
+}

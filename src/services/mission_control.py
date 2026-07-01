@@ -4,6 +4,7 @@ from src.services.validation_engine import ValidationEngine
 from src.services.health_engine import HealthEngine
 from src.services.intelligence_engine import IntelligenceEngine
 from src.graph.graph_engine import GraphEngineV2
+from src.services.event_engine import EventEngine
 
 
 class MissionControl:
@@ -12,9 +13,16 @@ class MissionControl:
         self.health = HealthEngine()
         self.intelligence = IntelligenceEngine()
         self.graph = GraphEngineV2()
+        self.events = EventEngine()
 
     def platform_report(self):
         most_connected = self.graph.most_connected()
+
+        self.events.publish(
+            category="Mission Control",
+            action="Platform report generated",
+            status="INFO",
+        )
 
         return {
             "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

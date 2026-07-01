@@ -4,6 +4,7 @@ from datetime import datetime
 import shutil
 
 from src.utils.pdf_generator import generate_faculty_dossier
+from src.services.event_engine import EventEngine
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "output"
@@ -16,10 +17,19 @@ def render_build_center():
 
     OUTPUT.mkdir(exist_ok=True)
 
+    events = EventEngine()
+
     st.subheader("PDF Exports")
 
     if st.button("Generate Faculty Dossier"):
         pdf_path = generate_faculty_dossier()
+
+        events.publish(
+            category="Build Center",
+            action=f"Faculty dossier generated: {pdf_path.name}",
+            status="SUCCESS",
+        )
+
         st.success(f"Faculty dossier created: {pdf_path.name}")
 
         with open(pdf_path, "rb") as f:
@@ -36,6 +46,13 @@ def render_build_center():
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         backup_base = OUTPUT / f"portfolio_backup_{timestamp}"
         backup_zip = shutil.make_archive(str(backup_base), "zip", CONTENT)
+
+        events.publish(
+            category="Build Center",
+            action=f"Backup created: {Path(backup_zip).name}",
+            status="SUCCESS",
+        )
+
         st.success(f"Backup created: {Path(backup_zip).name}")
 
         with open(backup_zip, "rb") as f:
@@ -49,6 +66,7 @@ def render_build_center():
     st.subheader("Output Folder")
 
     files = sorted(OUTPUT.glob("*"))
+
     if files:
         for file in files:
             st.write(file.name)
