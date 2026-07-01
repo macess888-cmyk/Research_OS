@@ -24,6 +24,8 @@ PAGES = [
     "Knowledge Graph",
     "Research Registry",
     "Research Objects",
+    "Object Registry",
+    "Relationship Explorer",
     "Timeline",
     "Search",
 

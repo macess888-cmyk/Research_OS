@@ -26,6 +26,8 @@ from src.pages.registry import render_registry
 from src.pages.timeline import render_timeline
 from src.pages.search import render_search
 from src.pages.objects import render_objects
+from src.pages.object_registry import render_object_registry
+from src.pages.relationships import render_relationships
 
 # Platform Pages
 from src.pages.health import render_health
@@ -66,6 +68,8 @@ ROUTES = {
     "Knowledge Graph": render_graph,
     "Research Registry": render_registry,
     "Research Objects": render_objects,
+    "Object Registry": render_object_registry,
+    "Relationship Explorer": render_relationships,
     "Timeline": render_timeline,
     "Search": render_search,
 
