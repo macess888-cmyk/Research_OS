@@ -22,6 +22,7 @@ from src.pages.workspace import render_workspace
 # Knowledge Pages
 from src.pages.atlas import render_atlas
 from src.pages.graph import render_graph
+from src.pages.graph_metrics import render_graph_metrics
 from src.pages.registry import render_registry
 from src.pages.timeline import render_timeline
 from src.pages.search import render_search
@@ -67,6 +68,7 @@ ROUTES = {
     # Knowledge
     "Research Atlas": render_atlas,
     "Knowledge Graph": render_graph,
+    "Graph Metrics": render_graph_metrics,
     "Research Registry": render_registry,
     "Research Objects": render_objects,
     "Object Registry": render_object_registry,

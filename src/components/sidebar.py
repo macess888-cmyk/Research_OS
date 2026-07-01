@@ -22,6 +22,7 @@ PAGES = [
 
     "Research Atlas",
     "Knowledge Graph",
+    "Graph Metrics",
     "Research Registry",
     "Research Objects",
     "Object Registry",
