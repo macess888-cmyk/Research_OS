@@ -1,0 +1,7 @@
+{
+  "id": "governability",
+  "type": "concept",
+  "title": "Governability",
+  "summary": "The ability of a system to remain correctable, steerable, and accountable under uncertainty.",
+  "tags": ["governance", "correction", "control"]
+}

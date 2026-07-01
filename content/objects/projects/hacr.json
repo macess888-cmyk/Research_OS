@@ -1,0 +1,10 @@
+{
+  "id": "hacr",
+  "type": "project",
+  "title": "HACR Hybrid Observatory",
+  "status": "Active",
+  "summary": "An observability and governance research platform focused on accountability, recoverability, consequence analysis, and resilient system architectures.",
+  "repository": "https://github.com/macess888-cmyk/HACR_Hybrid_Observatory",
+  "concepts": ["observability", "governability", "recoverability"],
+  "tags": ["observability", "governance", "research-platform"]
+}

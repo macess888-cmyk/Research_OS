@@ -6,7 +6,7 @@
       "status": "Active",
       "category": "Platform",
       "github": "https://github.com/macess888-cmyk/Research_OS",
-      "description": "Research management platform."
+      "description": "A modular research management platform for academic portfolios, publications, software projects, knowledge graphs, validation, and automated outputs."
     },
     {
       "id": "hacr",
@@ -14,7 +14,7 @@
       "status": "Active",
       "category": "Research",
       "github": "https://github.com/macess888-cmyk/HACR_Hybrid_Observatory",
-      "description": "Observability and governance research."
+      "description": "An observability and governance research platform focused on accountability, recoverability, consequence analysis, and resilient system architectures."
     }
   ]
 }

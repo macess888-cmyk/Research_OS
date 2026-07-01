@@ -6,7 +6,6 @@ PROJECT_FILE = ROOT / "content" / "projects" / "projects.json"
 
 
 class ProjectEngine:
-
     def __init__(self):
         with open(PROJECT_FILE, encoding="utf-8") as f:
             self.data = json.load(f)

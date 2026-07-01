@@ -1,0 +1,11 @@
+{
+  "id": "research_os",
+  "type": "project",
+  "title": "Research OS",
+  "status": "Active",
+  "summary": "A modular research management platform for organizing research projects, publications, software, knowledge graphs, validation, and automated outputs.",
+  "repository": "https://github.com/macess888-cmyk/Research_OS",
+  "software": ["research_os_app"],
+  "concepts": ["observability", "governability", "research_infrastructure"],
+  "tags": ["research", "platform", "streamlit", "knowledge-management"]
+}

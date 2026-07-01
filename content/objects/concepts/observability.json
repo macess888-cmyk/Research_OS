@@ -1,0 +1,7 @@
+{
+  "id": "observability",
+  "type": "concept",
+  "title": "Observability",
+  "summary": "The ability to inspect and understand system state, signals, evidence, and behavior without confusing visibility with authority.",
+  "tags": ["systems", "inspection", "evidence"]
+}

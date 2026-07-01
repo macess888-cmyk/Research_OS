@@ -4,6 +4,7 @@ from src.config import APP_NAME, APP_VERSION, APP_AUTHOR, APP_TAGLINE, APP_LOCAT
 
 PAGES = [
     "Dashboard",
+    "Mission Control",
     "System Health",
     "Validation",
     "Research Intelligence",
@@ -22,6 +23,7 @@ PAGES = [
     "Research Atlas",
     "Knowledge Graph",
     "Research Registry",
+    "Research Objects",
     "Timeline",
     "Search",
 
@@ -29,6 +31,7 @@ PAGES = [
     "Admin Editor",
     "Build Center",
 ]
+
 
 def render_sidebar():
     st.sidebar.title(APP_NAME)
