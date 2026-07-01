@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "research_os",
+      "label": "Research OS",
+      "type": "software"
+    },
+    {
+      "id": "hacr",
+      "label": "HACR Hybrid Observatory",
+      "type": "software"
+    },
+    {
+      "id": "signal_enhancer",
+      "label": "Signal Enhancer",
+      "type": "software"
+    },
+    {
+      "id": "universal_bridge",
+      "label": "Universal Bridge",
+      "type": "software"
+    },
+    {
+      "id": "riemann",
+      "label": "Riemann Workbench",
+      "type": "software"
+    },
+    {
+      "id": "governability",
+      "label": "Governability",
+      "type": "concept"
+    },
+    {
+      "id": "recoverability",
+      "label": "Recoverability",
+      "type": "concept"
+    },
+    {
+      "id": "observability",
+      "label": "Observability",
+      "type": "concept"
+    }
+  ],
+
+  "edges": [
+    {
+      "from": "research_os",
+      "to": "hacr",
+      "relation": "hosts"
+    },
+    {
+      "from": "research_os",
+      "to": "signal_enhancer",
+      "relation": "hosts"
+    },
+    {
+      "from": "research_os",
+      "to": "universal_bridge",
+      "relation": "hosts"
+    },
+    {
+      "from": "research_os",
+      "to": "riemann",
+      "relation": "hosts"
+    },
+    {
+      "from": "hacr",
+      "to": "observability",
+      "relation": "investigates"
+    },
+    {
+      "from": "signal_enhancer",
+      "to": "governability",
+      "relation": "supports"
+    },
+    {
+      "from": "signal_enhancer",
+      "to": "recoverability",
+      "relation": "supports"
+    }
+  ]
+}

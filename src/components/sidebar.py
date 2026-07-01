@@ -13,6 +13,7 @@ PAGES = [
     "Search",
     "Admin Editor",
     "Build Center",
+    "Knowledge Graph",
 ]
 
 def render_sidebar():
