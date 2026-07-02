@@ -1,3 +1,4 @@
+from src.services.inspectable import Inspectable
 from src.services.object_engine import ObjectEngine
 from src.services.relationship_engine import RelationshipEngine
 from src.services.navigator_engine import NavigatorEngine
@@ -6,7 +7,7 @@ from src.services.platform_registry import PlatformRegistry
 from src.graph.graph_engine import GraphEngineV2
 
 
-class ResearchKernel:
+class ResearchKernel(Inspectable):
     """
     Central orchestration layer for Research OS.
 
@@ -45,3 +46,11 @@ class ResearchKernel:
 
     def services(self):
         return self.registry.services()
+
+    def inspect(self):
+        return {
+            "service": "Research Kernel",
+            "status": "READY",
+            "healthy": True,
+            "details": self.status(),
+        }
