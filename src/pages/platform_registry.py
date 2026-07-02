@@ -7,25 +7,29 @@ def render_platform_registry():
     registry = PlatformRegistry()
 
     st.title("Platform Registry")
-    st.caption("Research OS describing itself.")
+    st.caption("Research OS describing itself through inspectable services.")
 
     services = registry.services()
 
-    st.metric("Registered Services", len(services))
+    st.metric("Registered Services", registry.count())
 
     st.divider()
 
     for service in services:
+        name = service.get("service", "Unnamed Service")
+        status = service.get("status", "UNKNOWN")
+        healthy = service.get("healthy", False)
 
-        with st.expander(
-            f"{service['name']}  [{service['status']}]",
-            expanded=True,
-        ):
+        label = f"{name} [{status}]"
 
-            details = service.get("details", {})
-
-            if details:
-                for key, value in details.items():
-                    st.write(f"**{key}:** {value}")
+        with st.expander(label, expanded=True):
+            if healthy:
+                st.success("Healthy")
             else:
-                st.caption("No additional metadata.")
+                st.warning("Needs inspection")
+
+            for key, value in service.items():
+                if key in ["service", "status", "healthy"]:
+                    continue
+
+                st.write(f"**{key.replace('_', ' ').title()}:** {value}")
