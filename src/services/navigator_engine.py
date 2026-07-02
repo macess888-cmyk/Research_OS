@@ -1,22 +1,17 @@
+from src.services.inspectable import Inspectable
 from src.services.object_engine import ObjectEngine
 from src.services.relationship_engine import RelationshipEngine
 
 
-class NavigatorEngine:
+class NavigatorEngine(Inspectable):
     def __init__(self):
         self.objects = ObjectEngine()
         self.relationships = RelationshipEngine()
 
     def search(self, query: str):
-        """
-        Search all research objects.
-        """
         return self.objects.search(query)
 
     def explore(self, object_id: str):
-        """
-        Return an object together with its related objects.
-        """
         obj = self.objects.get(object_id)
 
         if not obj:
@@ -29,11 +24,18 @@ class NavigatorEngine:
         }
 
     def statistics(self):
-        """
-        Platform-wide navigation statistics.
-        """
         return {
             "objects": self.objects.count(),
             "relationships": self.relationships.relationship_count(),
             "types": self.objects.by_type(),
+        }
+
+    def inspect(self):
+        stats = self.statistics()
+
+        return {
+            "service": "Navigator Engine",
+            "status": "READY",
+            "healthy": True,
+            "details": stats,
         }
