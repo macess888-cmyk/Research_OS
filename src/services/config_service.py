@@ -1,13 +1,14 @@
 import json
 from pathlib import Path
 
+from src.services.inspectable import Inspectable
+
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "config" / "settings.json"
 
 
-class ConfigService:
-
+class ConfigService(Inspectable):
     def __init__(self):
         with open(CONFIG, "r", encoding="utf-8") as f:
             self.settings = json.load(f)
@@ -34,3 +35,14 @@ class ConfigService:
     @property
     def author(self):
         return self.get("application", "author")
+
+    def inspect(self):
+        return {
+            "service": "Configuration Service",
+            "status": "READY",
+            "healthy": True,
+            "application": self.app_name,
+            "version": self.version,
+            "author": self.author,
+            "config_file": str(CONFIG),
+        }
