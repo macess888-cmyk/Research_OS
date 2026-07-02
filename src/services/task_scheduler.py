@@ -1,7 +1,9 @@
 from datetime import datetime
 
+from src.services.inspectable import Inspectable
 
-class TaskScheduler:
+
+class TaskScheduler(Inspectable):
     """
     Research OS Scheduler.
 
@@ -49,4 +51,12 @@ class TaskScheduler:
             "registered": len(self.tasks),
             "enabled": len(self.enabled()),
             "generated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        }
+
+    def inspect(self):
+        return {
+            "service": "Task Scheduler",
+            "status": "READY",
+            "healthy": True,
+            "details": self.summary(),
         }
