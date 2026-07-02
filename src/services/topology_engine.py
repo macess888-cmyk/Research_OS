@@ -1,7 +1,8 @@
 from src.graph.graph_engine import GraphEngineV2
+from src.services.inspectable import Inspectable
 
 
-class TopologyEngine:
+class TopologyEngine(Inspectable):
     def __init__(self):
         self.graph = GraphEngineV2()
 
@@ -29,4 +30,14 @@ class TopologyEngine:
         return {
             "isolated": isolated,
             "central": most,
+        }
+
+    def inspect(self):
+        summary = self.summary()
+
+        return {
+            "service": "Topology Engine",
+            "status": "READY",
+            "healthy": True,
+            "details": summary,
         }
