@@ -57,11 +57,14 @@ def render_mission_control():
 
     for service in report["services"]:
         status = service.get("status", "UNKNOWN")
-        name = service.get("name", "Unnamed Service")
+        name = service.get("service", "Unnamed Service")
+        healthy = service.get("healthy", False)
 
-        if status == "READY":
-            st.success(f"{name} — {status}")
+        label = f"{name} — {status}"
+
+        if healthy and status in ["READY", "FOUNDATION"]:
+            st.success(label)
         elif status == "WARNING":
-            st.warning(f"{name} — {status}")
+            st.warning(label)
         else:
-            st.info(f"{name} — {status}")
+            st.info(label)
