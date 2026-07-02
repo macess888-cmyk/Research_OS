@@ -1,9 +1,10 @@
 from collections import defaultdict
 
+from src.services.inspectable import Inspectable
 from src.services.object_engine import ObjectEngine
 
 
-class RelationshipEngine:
+class RelationshipEngine(Inspectable):
     def __init__(self):
         self.objects = ObjectEngine()
 
@@ -96,4 +97,13 @@ class RelationshipEngine:
             "score": score,
             "total": total,
             "checks": checks,
+        }
+
+    def inspect(self):
+        return {
+            "service": "Relationship Engine",
+            "status": "READY",
+            "healthy": True,
+            "relationships": self.relationship_count(),
+            "orphans": len(self.orphan_objects()),
         }
