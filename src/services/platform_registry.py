@@ -12,9 +12,12 @@ from src.geometry.structural_geometry import StructuralGeometry
 
 class PlatformRegistry:
     """
-    Self-description of Research OS.
+    Research OS Platform Registry
 
-    Services describe themselves through inspect().
+    Every subsystem is responsible for describing
+    itself through inspect().
+
+    The registry simply aggregates those descriptions.
     """
 
     def __init__(self):
@@ -32,10 +35,55 @@ class PlatformRegistry:
         ]
 
     def services(self):
-        return [
-            service.inspect()
-            for service in self.services_list
-        ]
+        """
+        Collect inspection reports from every
+        registered service.
+        """
+
+        reports = []
+
+        #
+        # Register the kernel separately to avoid
+        # circular imports.
+        #
+        try:
+            from src.kernel.kernel import ResearchKernel
+
+            reports.append(
+                ResearchKernel().inspect()
+            )
+
+        except Exception as e:
+            reports.append(
+                {
+                    "service": "Research Kernel",
+                    "status": "WARNING",
+                    "healthy": False,
+                    "error": str(e),
+                }
+            )
+
+        #
+        # Register every remaining service.
+        #
+        for service in self.services_list:
+
+            try:
+                reports.append(
+                    service.inspect()
+                )
+
+            except Exception as e:
+                reports.append(
+                    {
+                        "service": service.__class__.__name__,
+                        "status": "ERROR",
+                        "healthy": False,
+                        "error": str(e),
+                    }
+                )
+
+        return reports
 
     def count(self):
         return len(self.services())
