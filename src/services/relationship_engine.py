@@ -23,7 +23,6 @@ class RelationshipEngine(Inspectable):
                 "collaborators",
                 "timeline",
                 "datasets",
-                "tags",
             ]:
                 values = obj.get(field, [])
 
