@@ -4,16 +4,34 @@
     "type": "concept",
     "status": "UNKNOWN",
     "summary": "Observable information that supports, contradicts, or informs research hypotheses and architectural interpretations.",
+
     "tags": [
         "research",
         "evidence",
         "observation",
         "science"
     ],
+
+    "relationships": [
+        {
+            "target": "observability",
+            "type": "supports"
+        },
+        {
+            "target": "governability",
+            "type": "supports"
+        },
+        {
+            "target": "research_os",
+            "type": "implements"
+        }
+    ],
+
     "concepts": [
         "observability",
         "governability"
     ],
+
     "projects": [
         "research_os"
     ]
