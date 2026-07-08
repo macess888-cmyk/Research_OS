@@ -13,17 +13,16 @@ class GraphEngineV2:
 
     def _build_edges(self):
         edges = []
-
+        internal_ids = set(self.node_lookup().keys())
         relationship_map = self.relationships.relationship_map()
 
         for source, targets in relationship_map.items():
             for target in targets:
-                edges.append(
-                    {
+                if source in internal_ids and target in internal_ids:
+                    edges.append({
                         "source": source,
                         "target": target,
-                    }
-                )
+                    })
 
         return edges
 
