@@ -23,5 +23,7 @@ RELATIONSHIP_TYPES = {
 
     "contradicts": "Challenges or conflicts with another object.",
 
+    "questions": "Identifies an inquiry directed at another object.",
+
     "related_to": "General semantic relationship."
 }

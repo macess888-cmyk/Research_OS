@@ -1,0 +1,33 @@
+{
+    "id": "research_question_001",
+    "title": "Can semantic relationships improve research inspection?",
+
+    "type": "question",
+
+    "status": "OPEN",
+
+    "summary": "Investigates whether explicit semantic relationships improve the observability, inspectability, navigation, and reproducibility of structured research.",
+
+    "metadata": {
+        "tags": [
+            "research",
+            "semantics",
+            "knowledge_graph",
+            "inspection"
+        ],
+        "author": "Research OS",
+        "source": "Internal",
+        "status": "OPEN"
+    },
+
+    "relationships": [
+        {
+            "target": "evidence",
+            "type": "questions"
+        },
+        {
+            "target": "research_os",
+            "type": "supports"
+        }
+    ]
+}
