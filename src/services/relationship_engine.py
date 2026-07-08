@@ -8,10 +8,8 @@ class RelationshipEngine(Inspectable):
     def __init__(self):
         self.objects = ObjectEngine()
 
-    def relationship_map(self):
-        graph = defaultdict(list)
-
-        legacy_fields = [
+    def legacy_fields(self):
+        return [
             "projects",
             "software",
             "concepts",
@@ -22,23 +20,54 @@ class RelationshipEngine(Inspectable):
             "datasets",
         ]
 
+    def semantic_relationships(self):
+        relationships = []
+
         for obj in self.objects.load_all():
             source = obj.get("id")
 
             for relationship in obj.get("relationships", []):
                 target = relationship.get("target")
+                relation_type = relationship.get("type", "related_to")
 
-                if target:
-                    graph[source].append(target)
+                if source and target:
+                    relationships.append({
+                        "source": source,
+                        "target": target,
+                        "type": relation_type,
+                    })
 
-            for field in legacy_fields:
+        return relationships
+
+    def legacy_relationships(self):
+        relationships = []
+
+        for obj in self.objects.load_all():
+            source = obj.get("id")
+
+            for field in self.legacy_fields():
                 values = obj.get(field, [])
 
                 if isinstance(values, str):
                     values = [values]
 
                 for value in values:
-                    graph[source].append(value)
+                    relationships.append({
+                        "source": source,
+                        "target": value,
+                        "type": field,
+                    })
+
+        return relationships
+
+    def relationship_map(self):
+        graph = defaultdict(list)
+
+        for relationship in self.semantic_relationships():
+            graph[relationship["source"]].append(relationship["target"])
+
+        for relationship in self.legacy_relationships():
+            graph[relationship["source"]].append(relationship["target"])
 
         return dict(graph)
 
@@ -107,10 +136,17 @@ class RelationshipEngine(Inspectable):
         }
 
     def inspect(self):
+        semantic_count = len(self.semantic_relationships())
+        legacy_count = len(self.legacy_relationships())
+        total_count = semantic_count + legacy_count
+
         return {
             "service": "Relationship Engine",
             "status": "READY",
             "healthy": True,
-            "relationships": self.relationship_count(),
+            "semantic_relationships": semantic_count,
+            "legacy_relationships": legacy_count,
+            "relationships": total_count,
             "orphans": len(self.orphan_objects()),
+            "migration_status": "IN_PROGRESS" if semantic_count else "LEGACY_ONLY",
         }
