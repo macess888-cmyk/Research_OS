@@ -11,19 +11,27 @@ class RelationshipEngine(Inspectable):
     def relationship_map(self):
         graph = defaultdict(list)
 
+        legacy_fields = [
+            "projects",
+            "software",
+            "concepts",
+            "publications",
+            "repositories",
+            "collaborators",
+            "timeline",
+            "datasets",
+        ]
+
         for obj in self.objects.load_all():
             source = obj.get("id")
 
-            for field in [
-                "projects",
-                "software",
-                "concepts",
-                "publications",
-                "repositories",
-                "collaborators",
-                "timeline",
-                "datasets",
-            ]:
+            for relationship in obj.get("relationships", []):
+                target = relationship.get("target")
+
+                if target:
+                    graph[source].append(target)
+
+            for field in legacy_fields:
                 values = obj.get(field, [])
 
                 if isinstance(values, str):
