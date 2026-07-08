@@ -1,0 +1,20 @@
+{
+    "id": "evidence",
+    "title": "Evidence",
+    "type": "concept",
+    "status": "UNKNOWN",
+    "summary": "Observable information that supports, contradicts, or informs research hypotheses and architectural interpretations.",
+    "tags": [
+        "research",
+        "evidence",
+        "observation",
+        "science"
+    ],
+    "concepts": [
+        "observability",
+        "governability"
+    ],
+    "projects": [
+        "research_os"
+    ]
+}
