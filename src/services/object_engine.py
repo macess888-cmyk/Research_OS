@@ -87,7 +87,6 @@ class ObjectEngine(Inspectable):
             "collaborators",
             "repositories",
             "timeline",
-            "tags",
         ]:
             values = obj.get(key, [])
 
