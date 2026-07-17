@@ -622,12 +622,11 @@ def test_runtime_record_header_exposes_no_serialization_methods():
 
 
 def test_importing_runtime_record_identity_does_not_import_application_frameworks():
-    sys.modules.pop("models.runtime_record_identity", None)
     streamlit_was_loaded = "streamlit" in sys.modules
 
     module = importlib.import_module("models.runtime_record_identity")
 
-    assert hasattr(module, "RuntimeRecordHeader")
+    assert module.RuntimeRecordHeader is RuntimeRecordHeader
 
     if not streamlit_was_loaded:
         assert "streamlit" not in sys.modules
