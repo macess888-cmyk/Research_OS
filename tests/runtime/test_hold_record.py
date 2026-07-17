@@ -521,7 +521,7 @@ def test_hold_record_module_can_be_imported_directly():
 
 
 def test_hold_record_does_not_modify_composed_header():
-    header = make_header(provenance_ref="PRV-1", external_id="external-hold")
+    header = make_header(provenance_ref="PRV-000000001", external_id="external-hold")
     before = tuple(getattr(header, name) for name in (
         "record_id", "record_category", "recorded_at", "schema_version",
         "provenance_ref", "external_id",
