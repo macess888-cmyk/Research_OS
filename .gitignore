@@ -4,3 +4,4 @@ __pycache__/
 .env
 output/
 *.pdf
+inspection_exports/
