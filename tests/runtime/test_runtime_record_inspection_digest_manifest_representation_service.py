@@ -238,27 +238,10 @@ def test_manifest_subclass_is_rejected(
 def test_runtime_record_inspection_report_is_rejected(
     service: RuntimeRecordInspectionDigestManifestRepresentationService,
 ) -> None:
+    invalid_report = object.__new__(RuntimeRecordInspectionReport)
+
     with pytest.raises(TypeError, match=f"^{EXPECTED_ERROR}$"):
-        service.to_primitive_dict(  # type: ignore[arg-type]
-            RuntimeRecordInspectionReport(
-                record_id="REC-000001",
-                record_type="event",
-                record_category="runtime",
-                append_position=1,
-                recorded_at=__import__("datetime").datetime(
-                    2026,
-                    7,
-                    17,
-                    12,
-                    0,
-                    0,
-                ),
-                schema_version="1.0",
-                provenance_ref=None,
-                external_id=None,
-                declared_fields=(),
-            )
-        )
+        service.to_primitive_dict(invalid_report)
 
 
 def test_invalid_input_is_rejected_before_field_access(
