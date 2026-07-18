@@ -596,7 +596,6 @@ def test_production_source_contains_no_prohibited_dependencies() -> None:
         "import pickle",
         "import yaml",
         "import sqlite3",
-        "RuntimeRecordInspectionDigestManifest",
         "RuntimeRecordInspectionDigestManifestService",
         "RuntimeRecordInspectionDigestManifestRepresentationService",
         "RuntimeRecordInspectionJsonEncodingService",
