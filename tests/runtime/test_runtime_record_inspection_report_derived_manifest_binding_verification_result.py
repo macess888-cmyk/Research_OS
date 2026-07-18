@@ -3,6 +3,7 @@ import importlib
 import inspect
 import sys
 from dataclasses import (
+    MISSING,
     FrozenInstanceError,
     fields,
     is_dataclass,
@@ -558,9 +559,8 @@ def test_result_fields_have_no_defaults():
     for field in fields(
         RuntimeRecordInspectionReportDerivedManifestBindingVerificationResult
     ):
-        assert field.default is inspect.Parameter.empty or str(
-            field.default
-        ).endswith("MISSING_TYPE object")
+        assert field.default is MISSING
+        assert field.default_factory is MISSING
 
 
 def test_repeated_construction_with_same_values_is_deterministic():
