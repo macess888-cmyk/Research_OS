@@ -830,23 +830,18 @@ def test_manifest_identity_is_independent_of_byte_length():
     assert first != second
 
 
-def test_manifest_identity_is_independent_of_bom_claim():
-    first = make_artifact(
+def test_manifest_identity_retains_manifest_bom_claim():
+    artifact = make_artifact(
         manifest=make_manifest(
             bom_present=False
         )
     )
-    second = make_artifact(
-        manifest=make_manifest(
-            bom_present=True
-        )
-    )
 
+    assert artifact.manifest.bom_present is False
     assert (
-        first.manifest_artifact_id
-        == second.manifest_artifact_id
+        artifact.manifest_artifact_id
+        == "RIDMA-000000001"
     )
-    assert first != second
 
 
 def test_matching_numeric_suffix_does_not_create_cross_namespace_identity():

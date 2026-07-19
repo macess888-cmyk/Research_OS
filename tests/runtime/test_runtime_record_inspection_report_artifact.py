@@ -29,8 +29,14 @@ RECORDED_AT = datetime(
 def make_report(**overrides):
     values = {
         "record_id": "RR-000000001",
+        "record_type": "RuntimeEventRecord",
         "record_category": "EVENT",
-        "details": (
+        "append_position": 1,
+        "recorded_at": RECORDED_AT,
+        "schema_version": "1.0",
+        "provenance_ref": "PRV-000000001",
+        "external_id": None,
+        "declared_fields": (
             ("event_type", "OBSERVED"),
             ("target_ref", None),
             ("actor_ref", None),
@@ -40,10 +46,6 @@ def make_report(**overrides):
             ("occurred_at", None),
             ("effective_at", None),
         ),
-        "recorded_at": RECORDED_AT,
-        "schema_version": "1.0",
-        "provenance_ref": "PRV-000000001",
-        "external_id": None,
     }
     values.update(overrides)
     return RuntimeRecordInspectionReport(**values)
@@ -73,6 +75,7 @@ def test_module_imports():
     module = importlib.import_module(
         "models.runtime_record_inspection_report_artifact"
     )
+
     assert module is not None
 
 
@@ -80,6 +83,7 @@ def test_class_imports_from_selected_module():
     module = importlib.import_module(
         "models.runtime_record_inspection_report_artifact"
     )
+
     assert (
         module.RuntimeRecordInspectionReportArtifact
         is RuntimeRecordInspectionReportArtifact
@@ -87,7 +91,9 @@ def test_class_imports_from_selected_module():
 
 
 def test_model_is_dataclass():
-    assert is_dataclass(RuntimeRecordInspectionReportArtifact)
+    assert is_dataclass(
+        RuntimeRecordInspectionReportArtifact
+    )
 
 
 def test_dataclass_field_order_is_exact():
@@ -152,12 +158,11 @@ def test_keyword_construction_is_supported():
     ],
 )
 def test_valid_report_artifact_ids_are_preserved(value):
-    assert (
-        make_artifact(
-            report_artifact_id=value
-        ).report_artifact_id
-        == value
+    artifact = make_artifact(
+        report_artifact_id=value,
     )
+
+    assert artifact.report_artifact_id == value
 
 
 @pytest.mark.parametrize(
@@ -177,12 +182,16 @@ def test_valid_report_artifact_ids_are_preserved(value):
         object(),
     ],
 )
-def test_report_artifact_id_rejects_non_string_values(value):
+def test_report_artifact_id_rejects_non_string_values(
+    value,
+):
     with pytest.raises(
         TypeError,
         match="report_artifact_id",
     ):
-        make_artifact(report_artifact_id=value)
+        make_artifact(
+            report_artifact_id=value,
+        )
 
 
 def test_report_artifact_id_type_error_message_is_exact():
@@ -192,7 +201,9 @@ def test_report_artifact_id_type_error_message_is_exact():
             "^report_artifact_id must be a string$"
         ),
     ):
-        make_artifact(report_artifact_id=None)
+        make_artifact(
+            report_artifact_id=None,
+        )
 
 
 @pytest.mark.parametrize(
@@ -216,12 +227,16 @@ def test_report_artifact_id_type_error_message_is_exact():
         "RIRA-00000000A",
     ],
 )
-def test_report_artifact_id_rejects_invalid_syntax(value):
+def test_report_artifact_id_rejects_invalid_syntax(
+    value,
+):
     with pytest.raises(
         ValueError,
         match="report_artifact_id",
     ):
-        make_artifact(report_artifact_id=value)
+        make_artifact(
+            report_artifact_id=value,
+        )
 
 
 def test_report_artifact_id_syntax_error_message_is_exact():
@@ -233,7 +248,7 @@ def test_report_artifact_id_syntax_error_message_is_exact():
         ),
     ):
         make_artifact(
-            report_artifact_id="RIRA-1"
+            report_artifact_id="RIRA-1",
         )
 
 
@@ -246,13 +261,13 @@ def test_zero_report_artifact_id_is_rejected():
         ),
     ):
         make_artifact(
-            report_artifact_id="RIRA-000000000"
+            report_artifact_id="RIRA-000000000",
         )
 
 
 def test_maximum_report_artifact_id_is_accepted():
     artifact = make_artifact(
-        report_artifact_id="RIRA-999999999"
+        report_artifact_id="RIRA-999999999",
     )
 
     assert (
@@ -269,9 +284,13 @@ def test_maximum_report_artifact_id_is_accepted():
         "rIRA-000000001",
     ],
 )
-def test_report_artifact_id_is_case_sensitive(value):
+def test_report_artifact_id_is_case_sensitive(
+    value,
+):
     with pytest.raises(ValueError):
-        make_artifact(report_artifact_id=value)
+        make_artifact(
+            report_artifact_id=value,
+        )
 
 
 @pytest.mark.parametrize(
@@ -283,19 +302,25 @@ def test_report_artifact_id_is_case_sensitive(value):
         "RIRA-000000001\n",
     ],
 )
-def test_report_artifact_id_rejects_whitespace(value):
+def test_report_artifact_id_rejects_whitespace(
+    value,
+):
     with pytest.raises(ValueError):
-        make_artifact(report_artifact_id=value)
+        make_artifact(
+            report_artifact_id=value,
+        )
 
 
 def test_valid_string_subclass_identifier_is_accepted():
     class ReportArtifactId(str):
         pass
 
-    value = ReportArtifactId("RIRA-000000001")
+    value = ReportArtifactId(
+        "RIRA-000000001"
+    )
 
     artifact = make_artifact(
-        report_artifact_id=value
+        report_artifact_id=value,
     )
 
     assert artifact.report_artifact_id is value
@@ -304,7 +329,9 @@ def test_valid_string_subclass_identifier_is_accepted():
 def test_valid_report_is_accepted():
     report = make_report()
 
-    artifact = make_artifact(report=report)
+    artifact = make_artifact(
+        report=report,
+    )
 
     assert artifact.report is report
 
@@ -312,7 +339,9 @@ def test_valid_report_is_accepted():
 def test_report_object_identity_is_preserved():
     report = make_report()
 
-    artifact = make_artifact(report=report)
+    artifact = make_artifact(
+        report=report,
+    )
 
     assert artifact.report is report
 
@@ -331,12 +360,16 @@ def test_report_object_identity_is_preserved():
         object(),
     ],
 )
-def test_report_rejects_invalid_types(value):
+def test_report_rejects_invalid_types(
+    value,
+):
     with pytest.raises(
         TypeError,
         match="report",
     ):
-        make_artifact(report=value)
+        make_artifact(
+            report=value,
+        )
 
 
 def test_report_rejects_digest_manifest():
@@ -344,7 +377,9 @@ def test_report_rejects_digest_manifest():
         TypeError,
         match="report",
     ):
-        make_artifact(report=make_manifest())
+        make_artifact(
+            report=make_manifest(),
+        )
 
 
 def test_report_type_error_message_is_exact():
@@ -355,7 +390,9 @@ def test_report_type_error_message_is_exact():
             "RuntimeRecordInspectionReport$"
         ),
     ):
-        make_artifact(report=None)
+        make_artifact(
+            report=None,
+        )
 
 
 def test_report_subclass_is_accepted():
@@ -366,8 +403,14 @@ def test_report_subclass_is_accepted():
 
     report = ReportSubclass(
         record_id="RR-000000001",
+        record_type="RuntimeEventRecord",
         record_category="EVENT",
-        details=(
+        append_position=1,
+        recorded_at=RECORDED_AT,
+        schema_version="1.0",
+        provenance_ref=None,
+        external_id=None,
+        declared_fields=(
             ("event_type", "OBSERVED"),
             ("target_ref", None),
             ("actor_ref", None),
@@ -377,13 +420,11 @@ def test_report_subclass_is_accepted():
             ("occurred_at", None),
             ("effective_at", None),
         ),
-        recorded_at=RECORDED_AT,
-        schema_version="1.0",
-        provenance_ref=None,
-        external_id=None,
     )
 
-    artifact = make_artifact(report=report)
+    artifact = make_artifact(
+        report=report,
+    )
 
     assert artifact.report is report
 
@@ -438,7 +479,9 @@ def test_report_failure_occurs_after_valid_identifier():
 def test_instance_dictionary_contains_only_contract_fields():
     artifact = make_artifact()
 
-    assert set(artifact.__dict__) == {
+    assert set(
+        artifact.__dict__
+    ) == {
         "report_artifact_id",
         "report",
     }
@@ -456,31 +499,45 @@ def test_instance_dictionary_contains_only_contract_fields():
 def test_no_derived_identifier_state_is_stored(
     attribute,
 ):
-    assert not hasattr(make_artifact(), attribute)
+    artifact = make_artifact()
+
+    assert not hasattr(
+        artifact,
+        attribute,
+    )
 
 
 @pytest.mark.parametrize(
     "attribute",
     [
         "record_id",
+        "record_type",
         "record_category",
+        "append_position",
         "recorded_at",
         "schema_version",
         "provenance_ref",
         "external_id",
-        "details",
+        "declared_fields",
     ],
 )
 def test_report_fields_are_not_duplicated_on_wrapper(
     attribute,
 ):
-    assert not hasattr(make_artifact(), attribute)
+    artifact = make_artifact()
+
+    assert not hasattr(
+        artifact,
+        attribute,
+    )
 
 
 def test_report_artifact_id_is_immutable():
     artifact = make_artifact()
 
-    with pytest.raises(FrozenInstanceError):
+    with pytest.raises(
+        FrozenInstanceError,
+    ):
         artifact.report_artifact_id = (
             "RIRA-000000002"
         )
@@ -495,9 +552,11 @@ def test_report_is_immutable_on_wrapper():
     artifact = make_artifact()
     original_report = artifact.report
 
-    with pytest.raises(FrozenInstanceError):
+    with pytest.raises(
+        FrozenInstanceError,
+    ):
         artifact.report = make_report(
-            record_id="RR-000000002"
+            record_id="RR-000000002",
         )
 
     assert artifact.report is original_report
@@ -510,11 +569,18 @@ def test_report_is_immutable_on_wrapper():
         "report",
     ],
 )
-def test_fields_cannot_be_deleted(attribute):
+def test_fields_cannot_be_deleted(
+    attribute,
+):
     artifact = make_artifact()
 
-    with pytest.raises(FrozenInstanceError):
-        delattr(artifact, attribute)
+    with pytest.raises(
+        FrozenInstanceError,
+    ):
+        delattr(
+            artifact,
+            attribute,
+        )
 
 
 def test_wrapper_equals_itself():
@@ -534,8 +600,8 @@ def test_same_id_and_different_report_are_not_equal():
     first = make_artifact()
     second = make_artifact(
         report=make_report(
-            record_id="RR-000000002"
-        )
+            record_id="RR-000000002",
+        ),
     )
 
     assert first != second
@@ -558,10 +624,11 @@ def test_different_id_and_same_report_are_not_equal():
 
 def test_different_id_and_different_report_are_not_equal():
     first = make_artifact()
+
     second = make_artifact(
         report_artifact_id="RIRA-000000002",
         report=make_report(
-            record_id="RR-000000002"
+            record_id="RR-000000002",
         ),
     )
 
@@ -594,8 +661,19 @@ def test_wrapper_is_not_equal_to_dictionary():
     }
 
 
+def test_wrapper_is_not_equal_to_arbitrary_object():
+    assert make_artifact() != object()
+
+
 def test_wrapper_is_hashable():
-    assert isinstance(hash(make_artifact()), int)
+    result = hash(
+        make_artifact()
+    )
+
+    assert isinstance(
+        result,
+        int,
+    )
 
 
 def test_equal_wrappers_have_equal_hashes():
@@ -610,7 +688,12 @@ def test_equal_wrappers_collapse_in_set():
     first = make_artifact()
     second = make_artifact()
 
-    assert len({first, second}) == 1
+    assert len(
+        {
+            first,
+            second,
+        }
+    ) == 1
 
 
 def test_different_ids_remain_distinct_in_set():
@@ -625,13 +708,20 @@ def test_different_ids_remain_distinct_in_set():
         report=report,
     )
 
-    assert len({first, second}) == 2
+    assert len(
+        {
+            first,
+            second,
+        }
+    ) == 2
 
 
 def test_wrapper_can_be_dictionary_key():
     artifact = make_artifact()
 
-    values = {artifact: "stored"}
+    values = {
+        artifact: "stored",
+    }
 
     assert values[artifact] == "stored"
 
@@ -645,9 +735,14 @@ def test_wrapper_can_be_dictionary_key():
         lambda first, second: first >= second,
     ],
 )
-def test_wrapper_has_no_ordering(operator):
+def test_wrapper_has_no_ordering(
+    operator,
+):
     with pytest.raises(TypeError):
-        operator(make_artifact(), make_artifact())
+        operator(
+            make_artifact(),
+            make_artifact(),
+        )
 
 
 def test_class_defines_no_custom_bool():
@@ -658,7 +753,9 @@ def test_class_defines_no_custom_bool():
 
 
 def test_default_repr_exposes_contract_fields():
-    representation = repr(make_artifact())
+    representation = repr(
+        make_artifact()
+    )
 
     assert (
         "RuntimeRecordInspectionReportArtifact"
@@ -693,7 +790,9 @@ def test_default_repr_exposes_contract_fields():
         "authorize",
     ],
 )
-def test_class_excludes_unowned_methods(method_name):
+def test_class_excludes_unowned_methods(
+    method_name,
+):
     assert not hasattr(
         RuntimeRecordInspectionReportArtifact,
         method_name,
@@ -739,8 +838,15 @@ def test_class_excludes_unowned_methods(method_name):
         "execution_allowed",
     ],
 )
-def test_wrapper_excludes_unowned_fields(attribute):
-    assert not hasattr(make_artifact(), attribute)
+def test_wrapper_excludes_unowned_fields(
+    attribute,
+):
+    artifact = make_artifact()
+
+    assert not hasattr(
+        artifact,
+        attribute,
+    )
 
 
 def test_validation_methods_are_present():
@@ -788,7 +894,7 @@ def test_report_artifact_id_is_independent_of_record_id():
     artifact = make_artifact(
         report_artifact_id="RIRA-000000001",
         report=make_report(
-            record_id="RR-000000999"
+            record_id="RR-000000999",
         ),
     )
 
@@ -796,12 +902,15 @@ def test_report_artifact_id_is_independent_of_record_id():
         artifact.report_artifact_id
         == "RIRA-000000001"
     )
-    assert artifact.report.record_id == "RR-000000999"
+    assert (
+        artifact.report.record_id
+        == "RR-000000999"
+    )
 
 
 def test_same_record_can_have_different_artifact_ids():
     report = make_report(
-        record_id="RR-000000999"
+        record_id="RR-000000999",
     )
 
     first = make_artifact(
@@ -813,7 +922,10 @@ def test_same_record_can_have_different_artifact_ids():
         report=report,
     )
 
-    assert first.report.record_id == second.report.record_id
+    assert (
+        first.report.record_id
+        == second.report.record_id
+    )
     assert first != second
 
 
@@ -821,31 +933,94 @@ def test_different_records_can_share_id_in_memory():
     first = make_artifact(
         report_artifact_id="RIRA-000000001",
         report=make_report(
-            record_id="RR-000000001"
+            record_id="RR-000000001",
         ),
     )
     second = make_artifact(
         report_artifact_id="RIRA-000000001",
         report=make_report(
-            record_id="RR-000000002"
+            record_id="RR-000000002",
         ),
     )
 
     assert first != second
 
 
+def test_report_identity_is_independent_of_append_position():
+    first = make_artifact(
+        report=make_report(
+            append_position=1,
+        ),
+    )
+    second = make_artifact(
+        report=make_report(
+            append_position=2,
+        ),
+    )
+
+    assert (
+        first.report_artifact_id
+        == second.report_artifact_id
+    )
+    assert first != second
+
+
+def test_report_identity_is_independent_of_external_id():
+    first = make_artifact(
+        report=make_report(
+            external_id="external-001",
+        ),
+    )
+    second = make_artifact(
+        report=make_report(
+            external_id="external-002",
+        ),
+    )
+
+    assert (
+        first.report_artifact_id
+        == second.report_artifact_id
+    )
+    assert first != second
+
+
+def test_report_identity_is_independent_of_provenance_ref():
+    first = make_artifact(
+        report=make_report(
+            provenance_ref="PRV-000000001",
+        ),
+    )
+    second = make_artifact(
+        report=make_report(
+            provenance_ref="PRV-000000002",
+        ),
+    )
+
+    assert (
+        first.report_artifact_id
+        == second.report_artifact_id
+    )
+    assert first != second
+
+
 def test_repeated_construction_is_deterministic():
     report = make_report()
 
-    first = make_artifact(report=report)
-    second = make_artifact(report=report)
+    first = make_artifact(
+        report=report,
+    )
+    second = make_artifact(
+        report=report,
+    )
 
     assert first == second
     assert first.report is report
     assert second.report is report
 
 
-def test_construction_emits_no_output(capsys):
+def test_construction_emits_no_output(
+    capsys,
+):
     make_artifact()
 
     captured = capsys.readouterr()
@@ -861,7 +1036,7 @@ def test_source_has_no_framework_or_service_imports():
         / "runtime_record_inspection_report_artifact.py"
     )
     source = source_path.read_text(
-        encoding="utf-8"
+        encoding="utf-8",
     ).lower()
 
     prohibited_terms = (
@@ -894,16 +1069,21 @@ def test_source_defines_private_pattern_constant():
 
     pattern = module._REPORT_ARTIFACT_ID_PATTERN
 
-    assert pattern.pattern == r"^RIRA-[0-9]{9}$"
+    assert (
+        pattern.pattern
+        == r"^RIRA-[0-9]{9}$"
+    )
 
 
 def test_pattern_constant_is_not_dataclass_field():
+    field_names = {
+        field.name
+        for field in fields(
+            RuntimeRecordInspectionReportArtifact
+        )
+    }
+
     assert (
         "_REPORT_ARTIFACT_ID_PATTERN"
-        not in {
-            field.name
-            for field in fields(
-                RuntimeRecordInspectionReportArtifact
-            )
-        }
+        not in field_names
     )
